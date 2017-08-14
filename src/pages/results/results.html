@@ -16,6 +16,7 @@
                   {{ item.car.plate | formatPlate }}
         </button>  
       </ion-list>
+        <p>{{ 'page.search.validDate' | translate : {validAt: results.validAt | amLocale: translateService.currentLang | amDateFormat : 'DD/MM/YY HH:mm:ss' } }}</p>
     </ion-col>
   </ion-row>
 </ion-grid>    

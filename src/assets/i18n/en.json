@@ -11,7 +11,8 @@
       "error": {
         "title": "Warning!",
         "message": "There are no results, matching your search criteria!"
-      }
+      },
+      "validDate" : "Latest updates on {{validAt}}"
     },
     "details": {
       "car": "Car",

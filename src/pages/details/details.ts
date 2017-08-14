@@ -15,6 +15,7 @@ export class DetailsPage {
 
   public taxi: TaxiModel;
   public company: CompanyModel;
+  public validAt: string;
 
   constructor(
     public navParams: NavParams,
@@ -24,6 +25,7 @@ export class DetailsPage {
 
     this.taxi = this.navParams.get('taxi');
     this.company = this.navParams.get('company');
+    this.validAt = this.navParams.get('validAt');
   }
 
   ionViewDidEnter() {

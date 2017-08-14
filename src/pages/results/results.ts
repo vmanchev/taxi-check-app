@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {TranslateService} from '@ngx-translate/core';
 import {DetailsPage} from '../details/details';
 import _ from 'lodash';
 
@@ -13,7 +14,8 @@ export class ResultsPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    public translateService: TranslateService) {
 
     this.results = this.navParams.get('items');
   }
@@ -26,7 +28,8 @@ export class ResultsPage {
     //lookup the taxi operator company and add pass it to the next page
     this.navCtrl.push(DetailsPage, {
       taxi: item,
-      company: _.find(this.results.companies, {id: item.operatorId})
+      company: _.find(this.results.companies, {id: item.operatorId}),
+      validAt: this.results.validAt
     });
   }
 

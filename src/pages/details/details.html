@@ -41,7 +41,12 @@
     <ion-item *ngIf="company.eik">
       {{ 'page.details.company.id' | translate }}: <span item-end>{{ company.eik }}</span>
     </ion-item>        
+    
+    <ion-item>
+      {{ 'page.search.validDate' | translate : {validAt: validAt | amLocale: translateService.currentLang | amDateFormat : 'DD/MM/YYYY HH:mm:ss' } }}
+    </ion-item>
+    
   </ion-list>
   <!-- results listing - end -->
-
+  
 </ion-content>
