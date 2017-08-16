@@ -2,8 +2,10 @@ import {Component} from '@angular/core';
 import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {AppVersion} from '@ionic-native/app-version';
 import {ConfigService} from '../../providers/config-service/config-service';
+import {ConfigModel} from '../../models/config/config.model';
 import {LanguagePage} from '../language/language';
 import {TranslateService} from '@ngx-translate/core';
+import _ from "lodash";
 
 @Component({
   selector: 'page-settings',
@@ -15,6 +17,7 @@ export class SettingsPage {
   public packageName: any;
   public versionCode: any;
   public versionNumber: any;
+  public webLanguage: string;
 
   constructor(
     public navCtrl: NavController,
@@ -23,6 +26,8 @@ export class SettingsPage {
     public configService: ConfigService,
     public appVersion: AppVersion,
     public translate: TranslateService) {
+
+    this.setWebLanguage(this.translate.currentLang);
   }
 
   ionViewDidEnter() {
@@ -32,10 +37,21 @@ export class SettingsPage {
     this.appVersion.getVersionNumber().then(data => this.versionNumber = data);
   }
 
+  setWebLanguage(code: string) {
+    this.webLanguage = (code !== 'bg') ? code : null;
+  }
+
   changeLanguage() {
     let languageModal = this.modalCtrl.create(LanguagePage, {isModal: true}, {
       cssClass: 'language-modal'
     });
+
+    languageModal.onDidDismiss((data: ConfigModel) => {
+      if (!_.isUndefined(data)) {
+        this.setWebLanguage(data.selectedLanguage.code);
+      }
+    });
+
     languageModal.present();
   }
 }
