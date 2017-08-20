@@ -15,7 +15,7 @@ export class DetailsPage {
 
   public taxi: TaxiModel;
   public company: CompanyModel;
-  public validAt: string;
+  public validAt: Date;
 
   constructor(
     public navParams: NavParams,

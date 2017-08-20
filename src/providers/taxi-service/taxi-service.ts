@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {ConfigService} from '../config-service/config-service';
 import {ApiConfig} from '../api-config/api-config';
 import {AreaModel} from '../../models/area.model';
 import {ApiResponseTaxiModel} from '../../models/taxi/api-response-taxi.model';
@@ -11,11 +10,9 @@ import 'rxjs/add/operator/toPromise';
 export class TaxiService {
 
   private resourceUri: string = '/search';
-
   private headers: Headers;
 
   constructor(
-    public configService: ConfigService,
     public apiConfig: ApiConfig,
     public http: Http) {
 
@@ -36,7 +33,7 @@ export class TaxiService {
   search(area: AreaModel, q: string) {
 
     return this.http
-      .get(this.apiConfig.getBaseUrl() + this.resourceUri + '?area.code=' + area.code + '&car.plate=' + q )
+      .get(this.apiConfig.getVersionUrl() + this.resourceUri + '?area.code=' + area.code + '&car.plate=' + q )
       .map(res => ApiResponseTaxiModel.fromObject(res.json()))
       .map(res => {
         return res;

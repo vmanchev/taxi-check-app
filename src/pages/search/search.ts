@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, ModalController, LoadingController, Loading} from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {TaxiService} from '../../providers/taxi-service/taxi-service';
+import {OfflineService} from '../../providers/offline-service/offline-service';
 import {ConfigService} from '../../providers/config-service/config-service';
 import {ConfigModel} from '../../models/config/config.model';
 import {ApiResponseTaxiModel} from '../../models/taxi/api-response-taxi.model';
@@ -19,6 +20,7 @@ export class SearchPage {
   public response: ApiResponseTaxiModel;
   public configModel: ConfigModel;
   public loading: Loading;
+  public companies: any;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +28,7 @@ export class SearchPage {
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public taxiService: TaxiService,
+    public OfflineService: OfflineService,
     public configService: ConfigService) {
 
     //search form setup
@@ -44,7 +47,6 @@ export class SearchPage {
 
   ionViewDidEnter() {
     this.clearData();
-
     this.getConfigModelData();
   }
 
@@ -60,8 +62,10 @@ export class SearchPage {
   process() {
 
     this.presentLoadingDefault();
+    
+    let service = (this.configModel.useLocalData) ? this.OfflineService : this.taxiService;
 
-    this.taxiService
+    service
       .search(this.configModel.selectedArea, this.formData.get('q').value)
       .subscribe((data: ApiResponseTaxiModel) => this.showResults(data));
   }
@@ -83,7 +87,7 @@ export class SearchPage {
     this.loading.dismiss();
 
     if (response.totalItems > 0) {
-      return this.navCtrl.push(ResultsPage, {items: response.result});
+      return this.navCtrl.push(ResultsPage, response.result);
     }
   }
 

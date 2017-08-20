@@ -5,11 +5,11 @@ export class ApiResponseTaxiModel {
   public status: number;
   public totalItems: number;
   public msg: string;
-  public createdAt: string;
+  public cachedAt: string;
   public result: ApiResultTaxiModel;
   
 
-  static fromObject = function (data: object) {
+  static fromObject = function (data: ApiResponseTaxiModel) {
 
     var obj = new ApiResponseTaxiModel();
 

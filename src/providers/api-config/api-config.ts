@@ -8,7 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ApiConfig {
 
-  private baseUrl: string = 'https://api.taxicheck.bg/v1';
+  private baseUrl: string = 'https://api.taxicheck.bg';
+  private versionUrl: string = 'https://api.taxicheck.bg/v1';
   private resourceUri: string = '/config';
 
   private headers: Headers;
@@ -25,11 +26,15 @@ export class ApiConfig {
   getBaseUrl() {
     return this.baseUrl;
   }
+  
+  getVersionUrl() {
+    return this.versionUrl;
+  }
 
   getApiConfig() {
 
     return this.http
-      .get(this.getBaseUrl() + this.resourceUri, this.headers)
+      .get(this.getVersionUrl() + this.resourceUri, this.headers)
       .map(res => AreasModel.fromObject(res.json()))
       .map((res: AreasModel) => {
         return res;

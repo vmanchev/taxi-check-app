@@ -20,13 +20,14 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpModule, Http} from '@angular/http';
 import {AppVersion} from '@ionic-native/app-version';
-import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import {ScreenOrientation} from '@ionic-native/screen-orientation';
 
-import { MomentModule } from 'angular2-moment';
-import { TaxiService } from '../providers/taxi-service/taxi-service';
-import { ApiConfig } from '../providers/api-config/api-config';
-import { FormatPlatePipe } from '../pipes/format-plate/format-plate';
-import { TranslatedAreaPipe } from '../pipes/translated-area/translated-area';
+import {MomentModule} from 'angular2-moment';
+import {TaxiService} from '../providers/taxi-service/taxi-service';
+import {ApiConfig} from '../providers/api-config/api-config';
+import {FormatPlatePipe} from '../pipes/format-plate/format-plate';
+import {TranslatedAreaPipe} from '../pipes/translated-area/translated-area';
+import {OfflineService} from '../providers/offline-service/offline-service';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -80,7 +81,8 @@ export function createTranslateLoader(http: Http) {
     AppVersion,
     ScreenOrientation,
     TaxiService,
-    ApiConfig
+    ApiConfig,
+    OfflineService
   ]
 })
 export class AppModule {}

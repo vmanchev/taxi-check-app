@@ -9,8 +9,27 @@
     <ion-item>
       <ion-label>{{ 'page.settings.language' | translate }}:</ion-label>
       <ion-avatar item-end>
-        <img src="assets/images/flags/{{ translate.currentLang }}.png" (click)="changeLanguage();">
+        <img src="assets/images/flags/{{ translateService.currentLang }}.png" (click)="changeLanguage();">
       </ion-avatar>
+    </ion-item>
+
+    <ion-item *ngIf="configModel">
+      <ion-label>{{ 'page.settings.localData.title' | translate }}:*</ion-label>
+      <ion-toggle [(ngModel)]="configModel.useLocalData" (ngModelChange)="onLocalDataChange($event)"></ion-toggle>
+    </ion-item>    
+
+    <ion-item *ngIf="configModel && configModel.useLocalData">
+      <ion-label>{{ 'page.settings.localData.updatedAt' | translate }}:</ion-label>
+      <span item-end *ngIf="configModel.localDataLastUpdatedAt">
+            {{ configModel.localDataLastUpdatedAt | amLocale: translateService.currentLang | amDateFormat : 'DD/MM/YYYY' }}
+      </span>
+      
+      <span item-end *ngIf="configModel.localDataLastUpdatedAt">
+        <button ion-button clear icon-only (click)="checkForLocalDataUpdate()">
+          <ion-icon name="refresh"></ion-icon>
+        </button>            
+      </span>
+      
     </ion-item>
 
     <ion-item>
@@ -32,7 +51,7 @@
       {{ 'page.settings.versionNumber' | translate }}:
       <span item-end>{{ versionNumber }}</span>
     </ion-item>
-    
+
     <ion-item>
       {{ 'page.settings.website' | translate }}:
       <span item-end><a href="https://taxicheck.bg/{{webLanguage}}">taxicheck.bg</a></span>
@@ -43,6 +62,9 @@
   <ion-grid>
     <ion-row>
       <ion-col class="note">{{ 'page.settings.note' | translate }}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="note">{{ 'page.settings.localData.note' | translate }}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

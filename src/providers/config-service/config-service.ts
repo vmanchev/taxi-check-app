@@ -47,7 +47,9 @@ export class ConfigService {
       }, {
         code: 'en',
         name: 'English'
-      }]
+      }],
+      useLocalData: false,
+      localDataLastUpdatedAt: null
     };
   }
 

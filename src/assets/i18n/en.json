@@ -12,7 +12,7 @@
         "title": "Warning!",
         "message": "There are no results, matching your search criteria!"
       },
-      "validDate" : "Latest updates on {{validAt}}"
+      "validDate" : "Last change on {{validAt}}"
     },
     "details": {
       "car": "Car",
@@ -37,7 +37,23 @@
       "versionCode": "Version code",
       "versionNumber": "Version number",
       "website": "Website",
-      "note": "* Please note, at the moment, this app provides information for licensed taxi services in Sofia, Varna, Bourgas, Pleven and Rousse (Bulgaria). Other cities in Bulgaria will be added soon."
+      "note": "* Please note, at the moment, this app provides information for licensed taxi services in Sofia, Varna, Bourgas, Pleven and Rousse (Bulgaria). Other cities in Bulgaria will be added soon.",
+      "localData" : {
+        "title": "Work offline",
+        "updatedAt": "Last updated",
+        "note": "* Downoload our database on your device. The app will be working without using your data plan. Data transfer is estimated at 300 KB and they will use approx 5 MB space while uncompressed."
+      },
+      "offline": {
+        "title": "Check for update",
+        "message": {
+          "newData": "You need to download an update! There is a new version generated {{since}}.",
+          "noNewData": "No new data."
+        },
+        "buttons": {
+          "close": "Close",
+          "update": "Update now"
+        }
+      }
     }
   }
 }

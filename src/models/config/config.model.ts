@@ -6,4 +6,6 @@ export class ConfigModel {
   public availableLanguages: Array<LanguageModel>;
   public areas: Array<AreaModel>;
   public selectedArea: AreaModel;
+  public useLocalData: Boolean;
+  public localDataLastUpdatedAt: any;
 }
